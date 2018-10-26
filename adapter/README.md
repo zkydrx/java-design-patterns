@@ -3,7 +3,6 @@ layout: pattern
 title: Adapter
 folder: adapter
 permalink: /patterns/adapter/
-pumlid: DSR14S8m30J0Lg20M7-wEMnDOiPMFDA9j0yyUEtUkzMHJTF7xI1NF4GSLzaxZtncgDVJgCPIpobzv0N2vOKtjgRHTziMI7KBcOXl10thfxB-Nz9dMJd71m00
 categories: Structural
 tags:
  - Java
@@ -41,7 +40,7 @@ Consider a captain that can only use rowing boats and cannot sail at all.
 
 First we have interfaces `RowingBoat` and `FishingBoat`
 
-```
+```java
 public interface RowingBoat {
   void row();
 }
@@ -56,7 +55,7 @@ public class FishingBoat {
 
 And captain expects an implementation of `RowingBoat` interface to be able to move
 
-```
+```java
 public class Captain implements RowingBoat {
 
   private RowingBoat rowingBoat;
@@ -74,7 +73,7 @@ public class Captain implements RowingBoat {
 
 Now let's say the pirates are coming and our captain needs to escape but there is only fishing boat available. We need to create an adapter that allows the captain to operate the fishing boat with his rowing boat skills.
 
-```
+```java
 public class FishingBoatAdapter implements RowingBoat {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(FishingBoatAdapter.class);
@@ -94,7 +93,7 @@ public class FishingBoatAdapter implements RowingBoat {
 
 And now the `Captain` can use the `FishingBoat` to escape the pirates.
 
-```
+```java
 Captain captain = new Captain(new FishingBoatAdapter());
 captain.row();
 ```

@@ -3,7 +3,6 @@ layout: pattern
 title: Builder
 folder: builder
 permalink: /patterns/builder/
-pumlid: DSR94O0m2030LhG0mzzkC64KXs26GzlNZw_TcRLADagJwOWOlW8OFcNdE79B9wkN1ccKUdLWoGS33KwySMdalEioC89C7Jhw5zYIfNrIrFybhPUHNLu0
 categories: Creational
 tags:
  - Java
@@ -32,7 +31,7 @@ Wikipedia says
 
 Having said that let me add a bit about what telescoping constructor anti-pattern is. At one point or the other we have all seen a constructor like below:
 
-```
+```java
 public Hero(Profession profession, String name, HairType hairType, HairColor hairColor, Armor armor, Weapon weapon) {
 }
 ```
@@ -43,7 +42,7 @@ As you can see the number of constructor parameters can quickly get out of hand 
 
 The sane alternative is to use the Builder pattern. First of all we have our hero that we want to create
 
-```
+```java
 public final class Hero {
   private final Profession profession;
   private final String name;
@@ -65,7 +64,7 @@ public final class Hero {
 
 And then we have the builder
 
-```
+```java
   public static class Builder {
     private final Profession profession;
     private final String name;
@@ -110,7 +109,7 @@ And then we have the builder
 
 And then it can be used as:
 
-```
+```java
 Hero mage = new Hero.Builder(Profession.MAGE, "Riobard").withHairColor(HairColor.BLACK).withWeapon(Weapon.DAGGER).build();
 ```
 

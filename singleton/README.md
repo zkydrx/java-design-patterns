@@ -3,7 +3,6 @@ layout: pattern
 title: Singleton
 folder: singleton
 permalink: /patterns/singleton/
-pumlid: HSV14SCm20J0Lk82BFxf1ikCh0n26ZZizfDVVhjRjwfvIhg-Bc35cyZvAQtZoYD3l4w364gTWxhcms2d3z-ydnAzsRuO4BUWmV43HRUcWcaagF-Lz55M3lq2
 categories: Creational
 tags:
  - Java
@@ -35,7 +34,7 @@ Joshua Bloch, Effective Java 2nd Edition p.18
 
 > A single-element enum type is the best way to implement a singleton
 
-```
+```java
 public enum EnumIvoryTower {
   INSTANCE;
 }
@@ -43,7 +42,7 @@ public enum EnumIvoryTower {
 
 Then in order to use
 
-```
+```java
 EnumIvoryTower enumIvoryTower1 = EnumIvoryTower.INSTANCE;
 EnumIvoryTower enumIvoryTower2 = EnumIvoryTower.INSTANCE;
 assertEquals(enumIvoryTower1, enumIvoryTower2); // true

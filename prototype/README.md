@@ -3,7 +3,6 @@ layout: pattern
 title: Prototype
 folder: prototype
 permalink: /patterns/prototype/
-pumlid: HSV13OCm30NGLM00udktCS62eCInxE-YRj_UUdjlRLfx7fBUbmkmU14vF-Lik7BF4AzJ8OfIvw3Mys6mqyrltWw9Tkfc38XhqE3uWSmd9Zuc9AZ_bVHHB4V_0W00
 categories: Creational
 tags: 
  - Java
@@ -34,7 +33,7 @@ In short, it allows you to create a copy of an existing object and modify it to 
 
 In Java, it can be easily done by implementing `Cloneable` and overriding `clone` from `Object`
 
-```
+```java
 class Sheep implements Cloneable {
   private String name;
   public Sheep(String name) { this.name = name; }
@@ -49,7 +48,7 @@ class Sheep implements Cloneable {
 
 Then it can be cloned like below
 
-```
+```java
 Sheep original = new Sheep("Jolly");
 System.out.println(original.getName()); // Jolly
 

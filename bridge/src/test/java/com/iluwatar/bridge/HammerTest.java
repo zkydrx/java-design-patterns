@@ -22,11 +22,10 @@
  */
 package com.iluwatar.bridge;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.verify;
 
 /**
  * Tests for hammer
@@ -38,7 +37,7 @@ public class HammerTest extends WeaponTest {
    * underlying weapon implementation.
    */
   @Test
-  public void testHammer() throws Exception {
+  public void testHammer() {
     final Hammer hammer = spy(new Hammer(mock(FlyingEnchantment.class)));
     testBasicWeaponActions(hammer);
   }

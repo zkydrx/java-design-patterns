@@ -3,7 +3,6 @@ layout: pattern
 title: Abstract Factory
 folder: abstract-factory
 permalink: /patterns/abstract-factory/
-pumlid: PSZB3OD034NHLa81Czwd6sCC39gVxEUWT1_ssLmTtQLqgR5fM7sTmFGtaV6TZu8prd0r6HtQaMKqAZLk1XjT_E6qgPUZfyc0MdTgx0-8LuUn8ErFXdr98NypXxKyezKV
 categories: Creational
 tags:
  - Java
@@ -35,7 +34,7 @@ Wikipedia says
 
 Translating the kingdom example above. First of all we have some interfaces and implementation for the objects in the kingdom
 
-```
+```java
 public interface Castle {
   String getDescription();
 }
@@ -75,7 +74,7 @@ public class ElfArmy implements Army {
 
 Then we have the abstraction and implementations for the kingdom factory
 
-```
+```java
 public interface KingdomFactory {
   Castle createCastle();
   King createKing();
@@ -109,7 +108,7 @@ public class OrcKingdomFactory implements KingdomFactory {
 
 Now we have our abstract factory that lets us make family of related objects i.e. Elven kingdom factory creates Elven castle, king and army etc.
 
-```
+```java
 KingdomFactory factory = new ElfKingdomFactory();
 Castle castle = factory.createCastle();
 King king = factory.createKing();
@@ -119,6 +118,45 @@ castle.getDescription();  // Output: This is the Elven castle!
 king.getDescription(); // Output: This is the Elven king!
 army.getDescription(); // Output: This is the Elven Army!
 ```
+
+Now, we can design a factory for our different kingdom factories. In this example, we created FactoryMaker, responsible for returning an instance of either ElfKingdomFactory or OrcKingdomFactory.  
+The client can use FactoryMaker to create the desired concrete factory which, in turn, will produce different concrete objects (Army, King, Castle).  
+In this example, we also used an enum to parameterize which type of kingdom factory the client will ask for.
+
+```java
+public static class FactoryMaker {
+
+  public enum KingdomType {
+    ELF, ORC
+  }
+
+  public static KingdomFactory makeFactory(KingdomType type) {
+    switch (type) {
+      case ELF:
+        return new ElfKingdomFactory();
+      case ORC:
+        return new OrcKingdomFactory();
+      default:
+        throw new IllegalArgumentException("KingdomType not supported.");
+    }
+  }
+}
+
+public static void main(String[] args) {
+  App app = new App();
+
+  LOGGER.info("Elf Kingdom");
+  app.createKingdom(FactoryMaker.makeFactory(KingdomType.ELF));
+  LOGGER.info(app.getArmy().getDescription());
+  LOGGER.info(app.getCastle().getDescription());
+  LOGGER.info(app.getKing().getDescription());
+
+  LOGGER.info("Orc Kingdom");
+  app.createKingdom(FactoryMaker.makeFactory(KingdomType.ORC));
+  -- similar use of the orc factory
+}
+```
+
 
 ## Applicability
 Use the Abstract Factory pattern when
@@ -140,6 +178,15 @@ Use the Abstract Factory pattern when
 ## Consequences:
 
 *	Dependency injection in java hides the service class dependencies that can lead to runtime errors that would have been caught at compile time.
+
+
+## Tutorial
+* [Abstract Factory Pattern Tutorial](https://www.journaldev.com/1418/abstract-factory-design-pattern-in-java) 
+
+## Presentations
+
+* [Abstract Factory Pattern](etc/presentation.html) 
+
 
 ## Real world examples
 

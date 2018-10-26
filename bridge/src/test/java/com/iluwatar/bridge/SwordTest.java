@@ -22,11 +22,10 @@
  */
 package com.iluwatar.bridge;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.verify;
 
 /**
  * Tests for sword
@@ -38,7 +37,7 @@ public class SwordTest extends WeaponTest {
    * underlying weapon implementation.
    */
   @Test
-  public void testSword() throws Exception {
+  public void testSword() {
     final Sword sword = spy(new Sword(mock(FlyingEnchantment.class)));
     testBasicWeaponActions(sword);
   }
